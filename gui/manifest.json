@@ -1,0 +1,14 @@
+{
+  "name": "Ping value",
+  "description": "Extension to show ping value when clicked",
+  "version": "1.0",
+  "background": {
+     "scripts": ["background.js"],
+     "persistent": false
+   },
+  "permissions": ["storage"],
+  "browser_action": {
+      "name": "Click to see ping value"
+  },
+  "manifest_version": 2
+}
