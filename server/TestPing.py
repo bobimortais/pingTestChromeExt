@@ -1,7 +1,8 @@
 import os
 import json
 
-def printPingTime(data, listPing):
+def printPingTime(data):
+	listPing = []	
 	for linha in data:
 		if("TTL" in linha):
 			linhaParts = linha.split("time=")[1].split(" ")
@@ -10,6 +11,7 @@ def printPingTime(data, listPing):
 			listPing.append("LP")
 		elif("General failure" in linha):
 			listPing.append("CC")
+	return listPing
 
 def getPing():		
 
@@ -24,14 +26,13 @@ def pingInfo():
 	listFinalPing = []	
 	for x in range(1, 2):
 		data = getPing()	
-		listFinalPing.append(printPingTime(data, listFinalPing))
+		listFinalPing.append(printPingTime(data))
 		data.close()
 		os.remove('ping.txt')
-	response = str(listFinalPing).replace('ms', '')
+	response = str(listFinalPing)
 	response = response.replace('[','')
 	response = response.replace(']','')
 	response = response.replace("'","")
-	response = response.replace('None', '')
 	response = response.replace(' ', '')
 	print(response)
 	return response

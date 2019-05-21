@@ -3,13 +3,17 @@ function updateIcon()
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() 
 	{
-		var response = this.responseText.split(",")
-		
-		for (var i = 0; i < response.length; i++) 
+		//Execute only when the request is completed
+		if(xhttp.readyState == 4)
 		{
-			chrome.browserAction.setBadgeText({text: response[i].concat("ms")});
-			sleep(1000)
-		}	
+			var response = this.responseText.split(",")
+			
+			for (var i = 0; i < response.length; i++) 
+			{
+				chrome.browserAction.setBadgeText({text: response[i]});
+				sleep(1000)
+			}	
+		}
 	};
 	xhttp.open("GET", "http://localhost:5000/", true);
 	xhttp.send();
