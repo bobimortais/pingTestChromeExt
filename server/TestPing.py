@@ -1,4 +1,5 @@
 import os
+import json
 
 def printPingTime(data, listPing):
 	for linha in data:
@@ -26,5 +27,11 @@ def pingInfo():
 		listFinalPing.append(printPingTime(data, listFinalPing))
 		data.close()
 		os.remove('ping.txt')
-	print(listFinalPing[0])
-	return str(listFinalPing[0])
+	response = str(listFinalPing).replace('ms', '')
+	response = response.replace('[','')
+	response = response.replace(']','')
+	response = response.replace("'","")
+	response = response.replace('None', '')
+	response = response.replace(' ', '')
+	print(response)
+	return response
