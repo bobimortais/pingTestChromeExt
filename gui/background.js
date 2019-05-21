@@ -1,6 +1,7 @@
 function updateIcon() 
 {
 	var xhttp = new XMLHttpRequest();
+	chrome.browserAction.setBadgeText({text: "wait"});
 	xhttp.onreadystatechange = function() 
 	{
 		//Execute only when the request is completed
